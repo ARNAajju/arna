@@ -1,0 +1,387 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Arna Digital Hub</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+<style>
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+font-family:'Poppins',sans-serif;
+}
+
+body{
+background:linear-gradient(135deg,#0f172a,#111827,#1e293b);
+color:#fff;
+min-height:100vh;
+overflow-x:hidden;
+}
+
+body::before{
+content:"";
+position:fixed;
+width:350px;
+height:350px;
+background:#2563eb55;
+border-radius:50%;
+filter:blur(120px);
+top:-120px;
+left:-120px;
+}
+
+body::after{
+content:"";
+position:fixed;
+width:300px;
+height:300px;
+background:#06b6d455;
+border-radius:50%;
+filter:blur(120px);
+right:-100px;
+bottom:-100px;
+}
+
+.container{
+max-width:1200px;
+margin:auto;
+padding:40px 20px;
+position:relative;
+z-index:2;
+}
+
+header{
+text-align:center;
+margin-bottom:40px;
+}
+
+.logo{
+font-size:42px;
+font-weight:700;
+}
+
+.logo span{
+color:#38bdf8;
+}
+
+.subtitle{
+margin-top:10px;
+opacity:.8;
+font-size:15px;
+}
+
+.stats{
+display:flex;
+justify-content:center;
+gap:15px;
+margin-top:25px;
+flex-wrap:wrap;
+}
+
+.stat{
+padding:12px 25px;
+border-radius:15px;
+background:rgba(255,255,255,.08);
+backdrop-filter:blur(18px);
+border:1px solid rgba(255,255,255,.12);
+}
+
+.search{
+margin:40px auto;
+max-width:700px;
+}
+
+.search input{
+width:100%;
+padding:18px 22px;
+font-size:16px;
+border:none;
+outline:none;
+border-radius:18px;
+background:rgba(255,255,255,.08);
+backdrop-filter:blur(20px);
+border:1px solid rgba(255,255,255,.12);
+color:#fff;
+}
+
+.search input::placeholder{
+color:#ddd;
+}
+
+.grid{
+display:grid;
+grid-template-columns:repeat(auto-fit,minmax(320px,1fr));
+gap:25px;
+}
+
+.card{
+background:rgba(255,255,255,.08);
+border:1px solid rgba(255,255,255,.12);
+backdrop-filter:blur(20px);
+padding:25px;
+border-radius:22px;
+transition:.35s;
+}
+
+.card:hover{
+transform:translateY(-8px);
+box-shadow:0 20px 40px rgba(0,0,0,.35);
+}
+
+.badge{
+display:inline-block;
+padding:6px 14px;
+border-radius:50px;
+background:#2563eb;
+font-size:12px;
+margin-bottom:15px;
+}
+
+h2{
+margin-bottom:10px;
+font-size:23px;
+}
+
+.id{
+color:#9ca3af;
+margin-bottom:15px;
+}
+
+.desc{
+font-size:14px;
+line-height:1.7;
+color:#ddd;
+margin-bottom:20px;
+}
+
+.buttons{
+display:flex;
+gap:10px;
+}
+
+button{
+flex:1;
+padding:13px;
+border:none;
+border-radius:12px;
+font-weight:600;
+cursor:pointer;
+transition:.3s;
+}
+
+.youtube{
+background:#ef4444;
+color:#fff;
+}
+
+.site{
+background:#2563eb;
+color:#fff;
+}
+
+button:hover{
+transform:scale(1.05);
+}
+
+footer{
+text-align:center;
+margin-top:60px;
+opacity:.7;
+font-size:14px;
+}
+
+@media(max-width:600px){
+
+.logo{
+font-size:32px;
+}
+
+.stat{
+width:100%;
+text-align:center;
+}
+
+.buttons{
+flex-direction:column;
+}
+
+}
+</style>
+
+</head>
+<body>
+
+<div class="container">
+
+<header>
+
+<div class="logo">
+Arna <span>Digital Hub</span>
+</div>
+
+<p class="subtitle">
+Step-by-Step Video Tutorials & Official Resources
+</p>
+
+<div class="stats">
+
+<div class="stat">📚 100+ Tutorials</div>
+
+<div class="stat">🎥 YouTube Guides</div>
+
+<div class="stat">🌐 Official Websites</div>
+
+</div>
+
+</header>
+
+<div class="search">
+
+<input
+id="search"
+placeholder="Search by ID, Name or Category...">
+
+</div>
+
+<div class="grid" id="cards"></div>
+
+<footer>
+
+© 2026 Arna Digital Hub • Learn • Explore • Grow
+
+</footer>
+
+</div>
+
+<script>
+
+const data=[
+
+{
+id:"ADH-001",
+name:"PAN Card",
+cat:"Identity",
+desc:"Apply, update, download and correct your PAN Card easily.",
+youtube:"#",
+site:"https://www.incometax.gov.in"
+},
+
+{
+id:"ADH-002",
+name:"Aadhaar Card",
+cat:"Identity",
+desc:"Download Aadhaar, update address and mobile number.",
+youtube:"#",
+site:"https://uidai.gov.in"
+},
+
+{
+id:"ADH-003",
+name:"Passport",
+cat:"Travel",
+desc:"Passport application and appointment booking guide.",
+youtube:"#",
+site:"https://passportindia.gov.in"
+},
+
+{
+id:"ADH-004",
+name:"Driving Licence",
+cat:"Transport",
+desc:"Driving Licence application, renewal and online services.",
+youtube:"#",
+site:"https://parivahan.gov.in"
+},
+
+{
+id:"ADH-005",
+name:"Voter ID",
+cat:"Government",
+desc:"New voter registration and corrections.",
+youtube:"#",
+site:"https://voters.eci.gov.in"
+},
+
+{
+id:"ADH-006",
+name:"Income Tax Return",
+cat:"Finance",
+desc:"Step-by-step ITR filing tutorials.",
+youtube:"#",
+site:"https://www.incometax.gov.in"
+}
+
+];
+
+const cards=document.getElementById("cards");
+
+function load(items){
+
+cards.innerHTML="";
+
+items.forEach(x=>{
+
+cards.innerHTML+=`
+
+<div class="card">
+
+<div class="badge">${x.cat}</div>
+
+<h2>${x.name}</h2>
+
+<div class="id">${x.id}</div>
+
+<div class="desc">${x.desc}</div>
+
+<div class="buttons">
+
+<button class="youtube"
+onclick="window.open('${x.youtube}')">
+▶ Watch Video
+</button>
+
+<button class="site"
+onclick="window.open('${x.site}')">
+🌐 Visit Site
+</button>
+
+</div>
+
+</div>
+
+`;
+
+});
+
+}
+
+load(data);
+
+document.getElementById("search").addEventListener("input",e=>{
+
+const value=e.target.value.toLowerCase();
+
+load(
+
+data.filter(x=>
+
+x.id.toLowerCase().includes(value) ||
+
+x.name.toLowerCase().includes(value) ||
+
+x.cat.toLowerCase().includes(value)
+
+)
+
+);
+
+});
+
+</script>
+
+</body>
+</html>
